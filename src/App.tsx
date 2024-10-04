@@ -3,30 +3,40 @@ import React from 'react';
 import Java from './java';
 import styled from 'styled-components';
 
+// Define the Task interface
 interface Task {
   id: number;
   text: string;
   completed: boolean;
 }
 
+//  the App component
 function App() {
+  // Initialize the tasks state
   const [tasks, setTasks] = React.useState<Task[]>([]);
 
+  // Use the useEffect to save
   React.useEffect(() => {
     const savedTasks = JSON.parse(localStorage.getItem('tasks') ?? '[]');
     setTasks(savedTasks as Task[]);
   }, []);
 
+  // Use the useEffect hook to save 
   React.useEffect(() => {
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }, [tasks]);
 
+  // Return the JSX
   return (
+    // Use the Body styled component as the root element
     <Body>
+      
       <Container>
+       
         <Heading>
           <h1>TO DO LIST</h1>
         </Heading>
+       
         <Java tasks={tasks} setTasks={setTasks} />
       </Container>
     </Body>
@@ -35,52 +45,53 @@ function App() {
 
 export default App;
 
+// Define the styled components
 export const Body = styled.div`
-   font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
 `;
 
 export const Container = styled.div`
   background: #000000;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
 `;
 
 export const Heading = styled.h1`
   margin: 0 0 20px;
-    font-size: 24px;
-    text-align: center;
-    color: white;
+  font-size: 24px;
+  text-align: center;
+  color: white;
 `;
 
 export const InputContainer = styled.div`
   display: flex;
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 `;
 
 export const Paragraph = styled.p`
-   font-size: 15px;
-    text-emphasis-color: blue;
-    animation-fill-mode: forwards;
+  font-size: 15px;
+  text-emphasis-color: blue;
+  animation-fill-mode: forwards;
 `;
 
 export const TaskInput = styled.div`
- flex: 1;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    margin-right: 10px;
+  flex: 1;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-right: 10px;
 `;
 
 export const Button = styled.button`
-padding: 10px 20px;
+  padding: 10px 20px;
   border: none;
   background-color: #28a745;
   color: #fff;
@@ -88,7 +99,7 @@ padding: 10px 20px;
   cursor: pointer;
 
   &:hover {
-    background-color:red;
+    background-color: red;
   }
 `;
 
@@ -107,9 +118,8 @@ export const FilterButton = styled.button`
 `;
 
 export const FilterContainer = styled.div`
-   margin-bottom: 20px;
+  margin-bottom: 20px;
   text-align: center;
-
 `;
 
 export const UnorderedList = styled.ul`
@@ -136,8 +146,9 @@ export const Label = styled.label`
 `;
 
 export const CheckboxInput = styled.input`
- margin-right: 10px;
+  margin-right: 10px;
 `;
+
 export const DeleteButton = styled.button`
   padding: 5px 10px;
   margin-left: 5px;
